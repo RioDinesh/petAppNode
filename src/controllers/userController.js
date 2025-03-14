@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 // Register new user
 const registerUser = async (req, res) => {
   try {
+    console.log("gg");
     const { name, email, phoneNumber, dob, petCategory } = req.body;
 
     // Validate required fields
@@ -12,12 +13,12 @@ const registerUser = async (req, res) => {
         .status(400)
         .json({ message: "Please provide all required fields" });
     }
-
+    console.log("gg");
     // Validate email format
     if (!validateEmail(email)) {
       return res.status(400).json({ message: "Invalid email format" });
     }
-
+    console.log("gg");
     // Validate phone number format (basic validation)
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(phoneNumber)) {
@@ -27,18 +28,19 @@ const registerUser = async (req, res) => {
           message: "Invalid phone number format. Please provide 10 digits",
         });
     }
+    console.log("gg");
 
     // Check if user already exists
     const existingUser = await User.findOne({
       $or: [{ email: email }, { phoneNumber: phoneNumber }],
     });
-
+    console.log("gg");
     if (existingUser) {
       return res.status(400).json({
         message: "User already exists with this email or phone number",
       });
     }
-
+    console.log("gg");
     // Create user object
     const user = new User({
       name,
@@ -48,7 +50,7 @@ const registerUser = async (req, res) => {
       petCategory,
       profilePic: req.file ? `/uploads/images/${req.file.filename}` : undefined,
     });
-
+    console.log("gg");
     // Save user
     await user.save();
 
@@ -64,6 +66,7 @@ const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: error.message });
   }
 };

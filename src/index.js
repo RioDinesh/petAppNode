@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs");
 require("dotenv").config();
-
+const connectDB=require("./config/database");
 // Import routes
 const userRoutes = require("./routes/userRoutes");
 const petRoutes = require("./routes/petRoutes");
@@ -55,7 +55,7 @@ app.use(errorHandler);
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
-
+connectDB();
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -4,8 +4,12 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
+ 
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const conn = await mongoose.connect("mongodb://52.66.8.200:40001/petapp", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+  });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -16,5 +20,4 @@ const connectDB = async () => {
 module.exports = connectDB;
 
 
-// For now, we'll leave this as a placeholder
-module.exports = {};
+
