@@ -1,6 +1,6 @@
 // Database configuration can be added here
 // Example for MongoDB connection:
-/*
+
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
@@ -14,7 +14,7 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-*/
+
 
 // For now, we'll leave this as a placeholder
 module.exports = {};
